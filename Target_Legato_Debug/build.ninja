@@ -1,0 +1,168 @@
+# Build script for application 'COW'
+
+# == Auto-generated file.  Do not edit. ==
+
+builddir =Target_Legato_Debug
+
+cFlags = -g -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/framework/c/inc -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/supervisor -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/airVantage -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/secureStorage -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/logDaemon -ICOWComponent/curl -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/atServices -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/positioning -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/wifi -I/home/mangoh/devstudio-5.3.1-linux64/cowsonweb/COW
+
+cxxFlags = -g -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/framework/c/inc -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/supervisor -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/airVantage -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/secureStorage -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/logDaemon -ICOWComponent/curl -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/atServices -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/positioning -I/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/wifi -I/home/mangoh/devstudio-5.3.1-linux64/cowsonweb/COW
+
+ldFlags = -g -Wl,-rpath=/COW/COWComponent/libcurl -L/COW/COWComponent/libcurl -l:libcurl.so.5
+
+target = wp85
+
+ifgenFlags =  --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/framework/c/inc --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/supervisor --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/airVantage --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/secureStorage --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/logDaemon --import-dir COWComponent/curl --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/atServices --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/positioning --import-dir /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/wifi --import-dir /home/mangoh/devstudio-5.3.1-linux64/cowsonweb/COW
+
+rule CompileC
+  description = Compiling C source
+  depfile = $out.d
+  command = /home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc --sysroot=/home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/armv7a-vfp-neon-poky-linux-gnueabi -MMD -MF $out.d -c $in -o $out -DLE_FILENAME=`basename $in` -Wall -fPIC -Werror -fvisibility=hidden -DMK_TOOLS_BUILD  -DLEGATO_EMBEDDED $cFlags
+
+rule CompileCxx
+  description = Compiling C++ source
+  depfile = $out.d
+  command = /home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ --sysroot=/home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/armv7a-vfp-neon-poky-linux-gnueabi -MMD -MF $out.d -c $in -o $out -DLE_FILENAME=`basename $in` -Wall -fPIC -Werror -fvisibility=hidden  -DMK_TOOLS_BUILD  -DLEGATO_EMBEDDED $cxxFlags
+
+rule LinkCLib
+  description = Linking C library
+  command = /home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc --sysroot=/home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/armv7a-vfp-neon-poky-linux-gnueabi -shared -o $out $in $ldFlags
+
+rule LinkCxxLib
+  description = Linking C++ library
+  command = /home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ --sysroot=/home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/armv7a-vfp-neon-poky-linux-gnueabi -shared -o $out $in $ldFlags
+
+rule LinkCExe
+  description = Linking C executable
+  command = /home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc --sysroot=/home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/armv7a-vfp-neon-poky-linux-gnueabi -o $out $in $ldFlags
+
+rule LinkCxxExe
+  description = Linking C++ executable
+  command = /home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ --sysroot=/home/mangoh/legato/packages/legato.toolchain.1.7.3.SWI9X15Y_07121400-wp85-wp750x-native-x86_64-201712131256/resources/native/sysroots/armv7a-vfp-neon-poky-linux-gnueabi -o $out $in $ldFlags
+
+rule CompileJava
+  description = Compiling Java source
+  command = javac -cp $classPath -d $classDestPath $in && $
+            jar -cf $out -C $classDestPath .
+
+rule GenInterfaceCode
+  description = Generating IPC interface code
+  command = ifgen --output-dir $outputDir $ifgenFlags $in
+
+rule MakeDir
+  description = Creating directory
+  command = mkdir -p "$out" || [ -d "$out" ]
+
+rule HardLink
+  description = Creating hard link
+  command = ln -T -f $in $out
+
+rule CopyFile
+  description = Copying file
+  command = cp -d -f -T $in $out && $
+            chmod $modeFlags $out
+
+rule RegenNinjaScript
+  description = Regenerating build script
+  generator = 1
+  command = mkapp --dont-run-ninja "-t" "wp85" "-o" "Target_Legato_Debug" "-w" "Target_Legato_Debug" "-i" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices" "-i" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/supervisor" "-i" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/airVantage" "-i" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/secureStorage" "-i" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/logDaemon" "-i" "COWComponent/curl" "-i" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces" "-i" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/atServices" "-i" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/positioning" "-i" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/wifi" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/fwupdate/platformAdaptor/default" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/modules/WiFi/service" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/airVantage/platformAdaptor/default" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/fwupdate" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/airVantage" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/modules/WiFi/apps/tools/wifi" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/positioning/platformAdaptor/default" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/positioning" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/devMode" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/secStore/platformAdaptor/default" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/secStore" "-s" "." "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/uartMode/platformAdaptor/default" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/modemServices/platformAdaptor/default" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/modemServices" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/atServices" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/uartMode" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/components/audio/platformAdaptor/default" "-s" "/home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/apps/tools" "-C" "-g" "-X" "-g" "-L" "-g" "-L" "-Wl,-rpath=/COW/COWComponent/libcurl" "-L" "-L/COW/COWComponent/libcurl" "-L" "-l:libcurl.so.5" "COW.adef"
+
+rule BundleFile
+  description = Bundling file
+  command = cp -T $in $out && $
+            chmod $modeFlags $out
+
+rule MakeAppInfoProperties
+  description = Creating info.properties
+  command = rm -f $out && $
+            md5=$$( ( cd $workingDir/staging && $
+                      find -P | sort && $
+                      find -P -type f | sort | xargs cat && $
+                      find -P -type l | sort | xargs -r -n 1 readlink $
+                    ) | md5sum) && $
+            md5=$${md5%% *} && $
+            ( echo "app.name=$name" && $
+              echo "app.md5=$$md5" && $
+              echo "app.version=$version" && $
+              echo "legato.version=`cat $$LEGATO_ROOT/version`" $
+            ) > $out
+
+rule PackApp
+  description = Packaging app
+  command = tar cjf $workingDir/$name.$target -C $workingDir/staging . && $
+            tarballSize=`stat -c '%s' $workingDir/$name.$target` && $
+            md5=`grep '^app.md5=' $in | sed 's/^app.md5=//'` && $
+            ( printf '{\n' && $
+              printf '"command":"updateApp",\n' && $
+              printf '"name":"$name",\n' && $
+              printf '"version":"$version",\n' && $
+              printf '"md5":"%s",\n' "$$md5" && $
+              printf '"size":%s\n' "$$tarballSize" && $
+              printf '}' && $
+              cat $workingDir/$name.$target $
+            ) > $out
+
+rule BinPackApp
+  description = Packaging app for distribution.
+  command = cp -r $stagingDir/* $workingDir/ && $
+            rm $workingDir/info.properties $workingDir/root.cfg && $
+            tar cjf $out -C $workingDir/ .
+
+build Target_Legato_Debug/staging/read-only/lib/libComponent_COWComponent.so: LinkCLib $builddir/component/1bff56d9c446c62394f53d4beebc9e99/obj/04b766a900cc3f30a2f46208ed0dd86f.o $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_client.c.o $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_client.c.o $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_client.c.o $builddir/component/1bff56d9c446c62394f53d4beebc9e99/obj/_componentMain.c.o | /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/build/wp85/framework/lib/liblegato.so
+  ldFlags =  -g -Wl,-rpath=/COW/COWComponent/libcurl -L/COW/COWComponent/libcurl -l:libcurl.so.5 -LTarget_Legato_Debug/staging/read-only/lib -Wl,--enable-new-dtags,-rpath="\$$ORIGIN/../lib" "-L$$LEGATO_BUILD/framework/lib" -llegato -lpthread -lrt -lm
+
+build $builddir/component/1bff56d9c446c62394f53d4beebc9e99/obj/04b766a900cc3f30a2f46208ed0dd86f.o: CompileC /home/mangoh/devstudio-5.3.1-linux64/cowsonweb/COW/COWComponent/COWComponent.c || $builddir/ $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_interface.h $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_messages.h $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_interface.h $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_messages.h $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_interface.h $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_messages.h $builddir/api/1ff75be811784fd549f1870c86a3c903/client/le_sim_interface.h $builddir/api/e707af8d5c990b17b160eb7f46d87ef4/client/le_mdmDefs_interface.h
+  cFlags = $cFlags -I$builddir/component/1bff56d9c446c62394f53d4beebc9e99/src -I$builddir/api/c698f3cb0645c8967a0375a2f350584d/client -I$builddir/api/35b2368d22388501c71f19150423ec7d/client -I$builddir/api/8d5347476cffd085ff72e420a94daa67/client -I$builddir/api/1ff75be811784fd549f1870c86a3c903/client -I$builddir/api/e707af8d5c990b17b160eb7f46d87ef4/client -DLE_COMPONENT_NAME=COWComponent -DLE_LOG_SESSION=COWComponent_LogSession  -DLE_LOG_LEVEL_FILTER_PTR=COWComponent_LogLevelFilterPtr  "-DCOMPONENT_INIT=LE_CI_LINKAGE LE_SHARED void _COWComponent_COMPONENT_INIT()"
+
+build $builddir/component/1bff56d9c446c62394f53d4beebc9e99/obj/_componentMain.c.o: CompileC $builddir/component/1bff56d9c446c62394f53d4beebc9e99/src/_componentMain.c
+  cFlags = $cFlags -I$builddir/component/1bff56d9c446c62394f53d4beebc9e99/src -I$builddir/api/c698f3cb0645c8967a0375a2f350584d/client -I$builddir/api/35b2368d22388501c71f19150423ec7d/client -I$builddir/api/8d5347476cffd085ff72e420a94daa67/client -I$builddir/api/1ff75be811784fd549f1870c86a3c903/client -I$builddir/api/e707af8d5c990b17b160eb7f46d87ef4/client -DLE_COMPONENT_NAME=COWComponent -DLE_LOG_SESSION=COWComponent_LogSession  -DLE_LOG_LEVEL_FILTER_PTR=COWComponent_LogLevelFilterPtr  "-DCOMPONENT_INIT=LE_CI_LINKAGE LE_SHARED void _COWComponent_COMPONENT_INIT()"
+
+build $builddir/app/COW/obj/cow/_main.c.o: CompileC Target_Legato_Debug/app/COW/src/cow/_main.c
+  cFlags = $cFlags -DLE_COMPONENT_NAME=cow_exe -DLE_LOG_SESSION=cow_exe_LogSession -DLE_LOG_LEVEL_FILTER_PTR=cow_exe_LogLevelFilterPtr 
+
+build $builddir/app/COW/staging/read-only/bin/cow: LinkCExe $builddir/app/COW/obj/cow/_main.c.o | Target_Legato_Debug/staging/read-only/lib/libComponent_COWComponent.so /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/build/wp85/framework/lib/liblegato.so /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/build/$target/framework/lib/liblegato.so
+  ldFlags = -rdynamic -Wl,--enable-new-dtags,-rpath="\$$ORIGIN/../lib" -LTarget_Legato_Debug/staging/read-only/lib "-LTarget_Legato_Debug/staging/read-only/lib" -lComponent_COWComponent "-LTarget_Legato_Debug/staging/read-only/lib" -lComponent_COWComponent "-L$$LEGATO_BUILD/framework/lib" -llegato -lpthread -lrt -ldl -lm $ldFlags
+
+build $builddir/app/COW/staging/read-only/lib/libComponent_COWComponent.so : HardLink Target_Legato_Debug/staging/read-only/lib/libComponent_COWComponent.so
+
+build $builddir/app/COW/staging/info.properties : MakeAppInfoProperties | $builddir/app/COW/staging/read-only/lib/libComponent_COWComponent.so $builddir/app/COW/staging/read-only/bin/cow $builddir/app/COW/staging/root.cfg
+  name = COW
+  version = 1.0.0
+  workingDir = $builddir/app/COW
+
+build Target_Legato_Debug/COW.$target.update: PackApp $builddir/app/COW/staging/info.properties
+  name = COW
+  version = 1.0.0
+  workingDir = $builddir/app/COW
+
+build $builddir/api/1ff75be811784fd549f1870c86a3c903/client/le_sim_interface.h: GenInterfaceCode /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_sim.api | /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_mdmDefs.api
+  outputDir = $builddir/api/1ff75be811784fd549f1870c86a3c903/client
+  ifgenFlags = --gen-interface $ifgenFlags
+
+build $builddir/api/e707af8d5c990b17b160eb7f46d87ef4/client/le_mdmDefs_interface.h: GenInterfaceCode /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_mdmDefs.api |
+  outputDir = $builddir/api/e707af8d5c990b17b160eb7f46d87ef4/client
+  ifgenFlags = --gen-interface $ifgenFlags
+
+build $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_client.c.o: CompileC $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_client.c | $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_messages.h $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_interface.h $builddir/api/1ff75be811784fd549f1870c86a3c903/client/le_sim_interface.h $builddir/api/e707af8d5c990b17b160eb7f46d87ef4/client/le_mdmDefs_interface.h
+  cFlags = $cFlags -I$builddir/api/1ff75be811784fd549f1870c86a3c903/client -I$builddir/api/e707af8d5c990b17b160eb7f46d87ef4/client
+
+build $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_client.c $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_interface.h $builddir/api/c698f3cb0645c8967a0375a2f350584d/client/le_cellnet_messages.h: GenInterfaceCode /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/le_cellnet.api | /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_sim.api /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_mdmDefs.api
+  ifgenFlags = --gen-client --gen-interface --gen-local --name-prefix le_cellnet --file-prefix le_cellnet $ifgenFlags
+  outputDir = $builddir/api/c698f3cb0645c8967a0375a2f350584d/client
+
+build $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_client.c.o: CompileC $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_client.c | $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_messages.h $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_interface.h
+  cFlags = $cFlags
+
+build $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_client.c $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_interface.h $builddir/api/35b2368d22388501c71f19150423ec7d/client/le_mrc_messages.h: GenInterfaceCode /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_mrc.api |
+  ifgenFlags = --gen-client --gen-interface --gen-local --name-prefix le_mrc --file-prefix le_mrc $ifgenFlags
+  outputDir = $builddir/api/35b2368d22388501c71f19150423ec7d/client
+
+build $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_client.c.o: CompileC $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_client.c | $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_messages.h $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_interface.h
+  cFlags = $cFlags
+
+build $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_client.c $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_interface.h $builddir/api/8d5347476cffd085ff72e420a94daa67/client/le_mdc_messages.h: GenInterfaceCode /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_mdc.api |
+  ifgenFlags = --gen-client --gen-interface --gen-local --name-prefix le_mdc --file-prefix le_mdc $ifgenFlags
+  outputDir = $builddir/api/8d5347476cffd085ff72e420a94daa67/client
+
+build Target_Legato_Debug/build.ninja: RegenNinjaScript | /home/mangoh/devstudio-5.3.1-linux64/cowsonweb/COW/COW.adef /home/mangoh/devstudio-5.3.1-linux64/cowsonweb/COW/COWComponent/Component.cdef /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/le_cellnet.api /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_mdc.api /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_mdmDefs.api /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_mrc.api /home/mangoh/legato/packages/legato.framework.16.10.4.wp85-wp750x-201712131342/resources/legato/interfaces/modemServices/le_sim.api
+

@@ -1,0 +1,6 @@
+mkapp
+-i
+/home/mangoh/legato_framework/legato/interfaces/modemServices
+-t
+wp85
+COW.adef

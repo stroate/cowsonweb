@@ -1,0 +1,31 @@
+executables:
+{
+	cow = ( COWComponent )
+}
+
+bindings:
+{
+	cow.COWComponent.le_cellnet -> cellNetService.le_cellnet
+	
+	cow.COWComponent.le_mrc -> modemService.le_mrc	
+	cow.COWComponent.le_mdc -> modemService.le_mdc
+}
+
+processes:
+{
+	envVars:
+	{
+		LE_LOG_LEVEL = DEBUG
+	}
+
+	run:
+	{
+		( cow )
+	}
+
+	maxCoreDumpFileBytes: 512K
+	maxFileBytes: 512K
+}
+
+version: 1.0.0
+maxFileSystemBytes: 512K
