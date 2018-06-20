@@ -41,7 +41,7 @@ static int serial_port_init() {
 }
 
 COMPONENT_INIT {
-	printf("CowsOnWeb²");
+	printf("Initializing CowsOnWeb");
 
 	fildes = le_tty_Open(SERIAL_PORTNAME, O_RDWR | O_NOCTTY | O_NDELAY);
 
@@ -114,6 +114,13 @@ static int respond(char *cmd) {
 	return strcmp(token, "OK");
 }
 
+/*
+ * Data handler: inspects incoming data
+ * and acts accordingly.
+ *
+ * This will request sensor data upon receiving initial greeting
+ * and hold relevant parameters until buffer is full and ready to send.
+ */
 static void handle(char *data) {
 	char *token;
 	char src[5];
