@@ -13,7 +13,7 @@ struct temperature {
 	double bat_v;
 };
 
-struct temperature buffer[DOWN_BUFFER_SIZE];
+struct temperature *buffer[DOWN_BUFFER_SIZE];
 int fildes;
 
 int make(struct temperature *, char *);
@@ -40,20 +40,12 @@ static int serial_port_init() {
 	return LE_OK;
 }
 
-COMPONENT_INIT {
-	printf("Initializing CowsOnWeb");
-
-	fildes = le_tty_Open(SERIAL_PORTNAME, O_RDWR | O_NOCTTY | O_NDELAY);
-
-	if (fildes != -1) {
-		serial_port_init();
-		curl_global_init(CURL_GLOBAL_ALL);
-
-		monitor_sensors();
-	}
-}
-
 static void monitor_sensors() {
+	int count = 0;
+	int *i;
+
+	i = &count;
+
 	do {
 		char data[1024];
 		int size;
@@ -67,9 +59,11 @@ static void monitor_sensors() {
 			exit(0);
 		case 0:
 			continue;
+		case 1:
+			break;
 		default:
 			LE_DEBUG("%d: %s", size, data);
-			handle(data);
+			handle(data, i);
 			break;
 		}
 	} while (1);
@@ -119,9 +113,10 @@ static int respond(char *cmd) {
  * and acts accordingly.
  *
  * This will request sensor data upon receiving initial greeting
- * and hold relevant parameters until buffer is full and ready to send.
+ * and hold relevant parameters of incoming data
+ * until buffer is full and ready to send.
  */
-static void handle(char *data) {
+static void handle(char *data, int *count) {
 	char *token;
 	char src[5];
 	char *payload = NULL;
@@ -142,15 +137,30 @@ static void handle(char *data) {
 
 			temp = (struct temperature *) malloc(sizeof(t));
 			make(temp, payload);
+			buffer[*count] = temp;
+			(*count)++;
 
-			le_result_t status = gsm_connect(
-					le_mdc_GetProfile(LE_MDC_DEFAULT_PROFILE));
-			if (status == LE_OK || status == LE_DUPLICATE) {
-				const char post_url[] = "cowsonweb.azurewebsites.net/api/AddTemperature?code=879AM4vr4eFS/LoCHVEmAnQvWI8fXKxVJe7/IkC1nJJqiakHQQnamw==";
+			if(*count == DOWN_BUFFER_SIZE) {
+				int i;
+				const char post_url[] =
+						"cowsonweb.azurewebsites.net/api/AddTemperature?code=879AM4vr4eFS/LoCHVEmAnQvWI8fXKxVJe7/IkC1nJJqiakHQQnamw==";
 
-				json_encode(temp, json);
-				data_post(post_url, json, "cowsonweb.azurewebsites.net", "52.178.43.209");
+				LE_INFO("Downstream buffer is full! Preparing to send temperatures...");
+				le_result_t status = go_online(
+						le_mdc_GetProfile(LE_MDC_DEFAULT_PROFILE));
+				if (status == LE_OK || status == LE_DUPLICATE) {
+					for(i = 0; i < DOWN_BUFFER_SIZE; i++) {
+						json_encode(buffer[i], json);
+						data_post(post_url, json,
+								"cowsonweb.azurewebsites.net",
+								"52.178.43.209");
+					}
+					//le_mdc_StopSession(profile);
+				}
+				sleep(3);
+				curl_global_cleanup();
 				free(json);
+				*count = 0;
 			}
 		}
 	}
@@ -168,7 +178,7 @@ int data_post(const char *url, char *json, const char *hostname, const char *ip)
 
 	curl = curl_easy_init();
 	if (curl) {
-		if(hostname && ip) {
+		if (hostname && ip) {
 			char resolve[128];
 
 			snprintf(resolve, 128, "%s:80:%s", hostname, ip);
@@ -192,8 +202,6 @@ int data_post(const char *url, char *json, const char *hostname, const char *ip)
 		curl_easy_cleanup(curl);
 	}
 
-	curl_global_cleanup();
-
 	return 0;
 }
 
@@ -206,12 +214,13 @@ int data_post(const char *url, char *json, const char *hostname, const char *ip)
  *  - LE_DUPLICATE if the data session is already connected for the given profile
  *  - LE_FAULT for other failures
  */
-le_result_t gsm_connect(le_mdc_ProfileRef_t profile) {
+le_result_t go_online(le_mdc_ProfileRef_t profile) {
 	//le_mdc_ConState_t *con_state = NULL;
 	le_cellnet_State_t *reg_state;
 	le_cellnet_State_t unknown = LE_CELLNET_REG_UNKNOWN;
 	reg_state = &unknown;
 
+	//throws segmentation fault (and exits) -> set manually!
 	//le_mdc_SetAuthentication(profile, LE_MDC_AUTH_NONE, NULL, NULL);
 
 	le_cellnet_GetNetworkState(reg_state);
@@ -276,4 +285,15 @@ static int json_encode(struct temperature *temp, char *json) {
 	LE_DEBUG("Encoded temperature to %s", json);
 
 	return 0;
+}
+
+COMPONENT_INIT {
+	fildes = le_tty_Open(SERIAL_PORTNAME, O_RDWR | O_NOCTTY | O_NDELAY);
+
+	if (fildes != -1) {
+		serial_port_init();
+		curl_global_init(CURL_GLOBAL_ALL);
+
+		monitor_sensors();
+	}
 }
